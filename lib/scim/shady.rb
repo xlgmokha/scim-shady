@@ -11,6 +11,7 @@ module Scim
       attr_accessor :location
       attr_accessor :version
       attr_accessor :username
+      attr_accessor :full_name
 
       def initialize
         @emails = []
@@ -33,6 +34,7 @@ module Scim
             'version' => version,
           },
           'name' => {
+            'formatted' => full_name,
           },
           'userName' => username,
           'phoneNumbers' => [],
