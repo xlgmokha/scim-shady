@@ -5,27 +5,17 @@ module Scim
   module Shady
     class User
       attr_accessor :id
-      attr_accessor :external_id
+      attr_accessor :username
       attr_accessor :created_at
       attr_accessor :updated_at
       attr_accessor :location
       attr_accessor :version
-      attr_accessor :username
-      attr_accessor :full_name
-
-      def initialize
-        @emails = []
-      end
-
-      def add_email(email)
-        @emails << email
-      end
 
       def to_h
         {
           'schemas' => [Schemas::USER],
           'id' => id,
-          'externalId' => external_id,
+          'userName' => username,
           'meta' => {
             'resourceType' => 'User',
             'created' => created_at.utc.iso8601,
@@ -33,14 +23,6 @@ module Scim
             'location' => location,
             'version' => version,
           },
-          'name' => {
-            'formatted' => full_name,
-          },
-          'userName' => username,
-          'phoneNumbers' => [],
-          'emails' => @emails.each_with_index.map do |x, i|
-            { 'value' => x, 'type' => 'work', 'primary' => i == 0 }
-          end
         }
       end
 
