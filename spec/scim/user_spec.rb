@@ -16,7 +16,7 @@ RSpec.describe Scim::Shady::User do
         builder.updated_at = updated_at
         builder.location = user_url
         builder.version = user_version
-      end.to_h
+      end
 
       expect(result['schemas']).to match_array([Scim::Shady::Schemas::USER])
       expect(result['id']).to eql(id)

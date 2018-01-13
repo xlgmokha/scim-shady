@@ -14,7 +14,7 @@ module Scim
         def build
           user = new
           yield user
-          user
+          user.to_h
         end
       end
     end
