@@ -1,6 +1,10 @@
 module Scim
   module Shady
     class User < Resource
+      def username
+        to_h['userName']
+      end
+
       class << self
         def build
           builder do |builder|

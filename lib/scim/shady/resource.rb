@@ -9,10 +9,6 @@ module Scim
         to_h['id']
       end
 
-      def username
-        to_h['userName']
-      end
-
       def created
         DateTime.parse(to_h['meta']['created'])
       end
