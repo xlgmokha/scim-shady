@@ -26,13 +26,12 @@ module Scim
       end
 
       def to_h
-        JSON.parse(to_json)
+        @json_hash ||= JSON.parse(to_json)
       end
 
       def to_json
         @json
       end
-
     end
   end
 end

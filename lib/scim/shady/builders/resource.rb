@@ -14,8 +14,8 @@ module Scim
             'id' => id,
             'meta' => {
               'resourceType' => self.class.name.split(/::/).last,
-              'created' => created_at.utc.iso8601,
-              'lastModified' => updated_at.utc.iso8601,
+              'created' => created_at.to_time.utc.iso8601,
+              'lastModified' => updated_at.to_time.utc.iso8601,
               'location' => location,
               'version' => version,
             },

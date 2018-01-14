@@ -30,7 +30,7 @@ RSpec.describe Scim::Shady::User do
     end
   end
 
-  describe ".build_json" do
+  describe ".to_json" do
     subject { described_class }
 
     it 'produces valid json' do
