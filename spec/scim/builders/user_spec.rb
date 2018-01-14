@@ -9,7 +9,7 @@ RSpec.describe Scim::Shady::Builders::User do
     let(:user_version) { SecureRandom.uuid }
     let(:username) { FFaker::Internet.user_name }
 
-    it 'builds a scim user' do
+    it 'builds a minimal scim user' do
       subject.id = id
       subject.username = username
       subject.created_at = created_at
