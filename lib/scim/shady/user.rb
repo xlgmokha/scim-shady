@@ -12,9 +12,16 @@ module Scim
 
       class << self
         def build
-          user = new
-          yield user
-          user.to_h
+          resource = new
+          yield resource
+          resource.to_h
+        end
+
+        def build_json
+          hash = build do |resource|
+            yield resource
+          end
+          JSON.dump(hash)
         end
       end
     end
