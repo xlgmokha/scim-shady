@@ -1,27 +1,21 @@
 module Scim
   module Shady
     class User < Resource
-      attr_accessor :username
-
-      def to_h
-        super.merge({
-          'schemas' => [Schemas::USER],
-          'userName' => username,
-        })
-      end
-
       class << self
         def build
-          resource = new
-          yield resource
-          resource.to_h
+          builder do |builder|
+            yield builder if block_given?
+          end.build
         end
 
-        def build_json
-          hash = build do |resource|
-            yield resource
-          end
-          JSON.dump(hash)
+        def builder
+          builder = builder_class.new
+          yield builder if block_given?
+          builder
+        end
+
+        def builder_class
+          Scim::Shady::Builders::User
         end
       end
     end

@@ -1,25 +1,42 @@
 module Scim
   module Shady
     class Resource
-      attr_accessor :id
-      attr_accessor :created_at
-      attr_accessor :updated_at
-      attr_accessor :location
-      attr_accessor :version
+      def initialize(json)
+        @json = json
+      end
+
+      def id
+        to_h['id']
+      end
+
+      def username
+        to_h['userName']
+      end
+
+      def created
+        DateTime.parse(to_h['meta']['created'])
+      end
+
+      def last_modified
+        DateTime.parse(to_h['meta']['lastModified'])
+      end
+
+      def version
+        to_h['meta']['version']
+      end
+
+      def location
+        to_h['meta']['location']
+      end
 
       def to_h
-        {
-          'schemas' => [],
-          'id' => id,
-          'meta' => {
-            'resourceType' => self.class.name.split(/::/).last,
-            'created' => created_at.utc.iso8601,
-            'lastModified' => updated_at.utc.iso8601,
-            'location' => location,
-            'version' => version,
-          },
-        }
+        JSON.parse(to_json)
       end
+
+      def to_json
+        @json
+      end
+
     end
   end
 end
