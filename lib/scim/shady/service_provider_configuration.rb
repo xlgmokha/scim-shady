@@ -25,6 +25,14 @@ module Scim
         to_h['bulk']['maxPayloadSize']
       end
 
+      def filter_supported
+        to_h['filter']['supported']
+      end
+
+      def filter_max_results
+        to_h['filter']['maxResults']
+      end
+
       def to_h
         @hash ||= JSON.parse(to_json)
       end

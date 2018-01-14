@@ -10,6 +10,11 @@ module Scim
           yield @bulk
         end
 
+        def filter
+          @filter = Filter.new
+          yield @filter
+        end
+
         def build
           Scim::Shady::ServiceProviderConfiguration.new(to_json)
         end
@@ -22,12 +27,12 @@ module Scim
           {
             'schemas' => [Schemas::SERVICE_PROVIDER_CONFIG],
             'documentationUri' => documentation_uri,
-            'patch' => {
-              "supported" => patch
-            },
+            'patch' => { "supported" => patch },
             'bulk' => @bulk.to_h,
+            'filter' => @filter.to_h,
           }
         end
+
         class Bulk
           attr_accessor :supported
           attr_accessor :max_operations
@@ -38,6 +43,18 @@ module Scim
               'supported' => supported,
               'maxOperations' => max_operations,
               'maxPayloadSize' => max_payload_size,
+            }
+          end
+        end
+
+        class Filter
+          attr_accessor :supported
+          attr_accessor :max_results
+
+          def to_h
+            {
+              'supported' => supported,
+              'maxResults' => max_results,
             }
           end
         end

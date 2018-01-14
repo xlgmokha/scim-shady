@@ -29,5 +29,15 @@ RSpec.describe Scim::Shady::Builders::ServiceProviderConfiguration do
       expect(result.bulk_max_operations).to eql(1_000)
       expect(result.bulk_max_payload_size).to eql(1_048_576)
     end
+
+    it 'can configure filter support' do
+      subject.filter do |x|
+        x.supported = true
+        x.max_results = 200
+      end
+      result = subject.build
+      expect(result.filter_supported).to be(true)
+      expect(result.filter_max_results).to eql(200)
+    end
   end
 end
