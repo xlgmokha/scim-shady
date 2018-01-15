@@ -2,6 +2,7 @@ module Scim
   module Shady
     module Builders
       class ServiceProviderConfiguration
+        include Metadata
         attr_accessor :documentation_uri
         attr_accessor :patch
         attr_accessor :change_password_supported
@@ -10,6 +11,7 @@ module Scim
 
         def initialize
           @authentication_schemes = []
+          @created_at = @updated_at = Time.now
         end
 
         def bulk
@@ -51,7 +53,7 @@ module Scim
         end
 
         def to_h
-          {
+          super.merge({
             'schemas' => [Schemas::SERVICE_PROVIDER_CONFIG],
             'documentationUri' => documentation_uri,
             'patch' => { "supported" => patch },
@@ -70,7 +72,7 @@ module Scim
               scheme['primary'] = true if index.zero?
               scheme
             end
-          }
+          })
         end
 
         class Bulk

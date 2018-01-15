@@ -89,8 +89,8 @@ RSpec.describe Scim::Shady::Builders::ServiceProviderConfiguration do
       result = subject.build
 
       expect(result.location).to eql(subject.location)
-      expect(result.created).to eql(subject.created)
-      expect(result.last_modified).to eql(subject.last_modified)
+      expect(result.created).to eql(DateTime.parse(subject.created_at.iso8601))
+      expect(result.last_modified).to eql(DateTime.parse(subject.updated_at.iso8601))
       expect(result.version).to eql(subject.version)
     end
   end
