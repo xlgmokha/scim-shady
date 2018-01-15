@@ -23,7 +23,7 @@ module Scim
           @photos = Photos.new
           @groups = Groups.new
           @x509_certificates = X509Certificates.new
-          @meta = Metadata.new
+          super
         end
 
         def name
@@ -58,10 +58,6 @@ module Scim
           yield @x509_certificates
         end
 
-        def meta
-          yield @meta
-        end
-
         def build
           Scim::Shady::User.new(to_json)
         end
@@ -75,24 +71,24 @@ module Scim
             'schemas' => [Schemas::USER],
             'externalId' => external_id,
             'userName' => username,
-            'name' => @name.to_h,
             'displayName' => display_name,
             'nickName' => nick_name,
             'profile_url' => profile_url,
-            'emails' => @emails.to_h,
-            'addresses' => @addresses.to_h,
-            'phoneNumbers' => @phone_numbers.to_h,
-            'ims' => @instant_messengers.to_h,
-            'photos' => @photos.to_h,
             'userType' => user_type,
             'title' => title,
             'preferredLanguage' => preferred_language,
             'locale' => locale,
             'timezone' => timezone,
             'active' => active,
-            'groups' => @groups.to_h,
-            'x509Certificates' => @x509_certificates.to_h,
-          }).merge(@meta.to_h)
+          })
+            .merge(@name.to_h)
+            .merge(@emails.to_h)
+            .merge(@addresses.to_h)
+            .merge(@phone_numbers.to_h)
+            .merge(@instant_messengers.to_h)
+            .merge(@photos.to_h)
+            .merge(@groups.to_h)
+            .merge(@x509_certificates.to_h)
         end
       end
 
@@ -108,12 +104,14 @@ module Scim
 
         def to_h
           {
-            'formatted' => formatted,
-            'familyName' => family_name,
-            'givenName' => given_name,
-            'middleName' => middle_name,
-            'honorificPrefix' => honorific_prefix,
-            'honorificSuffix' => honorific_suffix,
+            'name' => {
+              'formatted' => formatted,
+              'familyName' => family_name,
+              'givenName' => given_name,
+              'middleName' => middle_name,
+              'honorificPrefix' => honorific_prefix,
+              'honorificSuffix' => honorific_suffix,
+            }
           }
         end
       end
@@ -125,7 +123,7 @@ module Scim
         end
 
         def to_h
-          @items
+          { 'emails' => @items }
         end
       end
 
@@ -144,7 +142,7 @@ module Scim
         end
 
         def to_h
-          @items
+          { 'addresses' => @items }
         end
       end
 
@@ -155,7 +153,7 @@ module Scim
         end
 
         def to_h
-          @items
+          { 'phoneNumbers' => @items }
         end
       end
 
@@ -166,7 +164,7 @@ module Scim
         end
 
         def to_h
-          @items
+          { 'ims' => @items }
         end
       end
 
@@ -177,7 +175,7 @@ module Scim
         end
 
         def to_h
-          @items
+          { 'photos' => @items }
         end
       end
 
@@ -188,7 +186,7 @@ module Scim
         end
 
         def to_h
-          @items
+          { 'groups' => @items }
         end
       end
 
@@ -199,7 +197,7 @@ module Scim
         end
 
         def to_h
-          @items
+          { 'x509Certificates' => @items }
         end
       end
     end

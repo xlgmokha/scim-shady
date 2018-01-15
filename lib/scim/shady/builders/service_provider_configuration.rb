@@ -2,7 +2,6 @@ module Scim
   module Shady
     module Builders
       class ServiceProviderConfiguration
-        include Metadata
         attr_accessor :documentation_uri
         attr_accessor :patch
         attr_accessor :change_password_supported
@@ -12,6 +11,7 @@ module Scim
         def initialize
           @authentication_schemes = []
           @created_at = @updated_at = Time.now
+          @meta = Metadata.new
         end
 
         def bulk

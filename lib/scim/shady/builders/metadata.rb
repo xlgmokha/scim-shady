@@ -1,7 +1,7 @@
 module Scim
   module Shady
     module Builders
-      module Metadata
+      class Metadata
         attr_accessor :created_at
         attr_accessor :updated_at
         attr_accessor :location
