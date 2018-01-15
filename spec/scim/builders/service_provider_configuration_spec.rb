@@ -79,5 +79,19 @@ RSpec.describe Scim::Shady::Builders::ServiceProviderConfiguration do
         }
       ])
     end
+
+    it 'can configure metadata' do
+      subject.location = FFaker::Internet.uri("https")
+      subject.created_at = Time.now.utc
+      subject.updated_at = Time.now.utc
+      subject.version = 1
+
+      result = subject.build
+
+      expect(result.location).to eql(subject.location)
+      expect(result.created).to eql(subject.created)
+      expect(result.last_modified).to eql(subject.last_modified)
+      expect(result.version).to eql(subject.version)
+    end
   end
 end
