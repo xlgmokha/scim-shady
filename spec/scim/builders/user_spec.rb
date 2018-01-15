@@ -13,10 +13,12 @@ RSpec.describe Scim::Shady::Builders::User do
     it 'builds a minimal scim user' do
       subject.id = id
       subject.username = username
-      subject.created_at = created_at
-      subject.updated_at = updated_at
-      subject.location = user_url
-      subject.version = user_version
+      subject.meta do |x|
+        x.created_at = created_at
+        x.updated_at = updated_at
+        x.location = user_url
+        x.version = user_version
+      end
       result = subject.build
 
       expect(result.id).to eql(id)
