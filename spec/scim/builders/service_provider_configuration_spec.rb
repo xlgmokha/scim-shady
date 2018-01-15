@@ -39,5 +39,11 @@ RSpec.describe Scim::Shady::Builders::ServiceProviderConfiguration do
       expect(result.filter_supported).to be(true)
       expect(result.filter_max_results).to eql(200)
     end
+
+    it 'can configure change password support' do
+      subject.change_password_supported = true
+      result = subject.build
+      expect(result.change_password_supported).to be(true)
+    end
   end
 end

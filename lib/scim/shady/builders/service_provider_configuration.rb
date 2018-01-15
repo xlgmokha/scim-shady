@@ -4,6 +4,7 @@ module Scim
       class ServiceProviderConfiguration
         attr_accessor :documentation_uri
         attr_accessor :patch
+        attr_accessor :change_password_supported
 
         def bulk
           @bulk = Bulk.new
@@ -30,6 +31,9 @@ module Scim
             'patch' => { "supported" => patch },
             'bulk' => @bulk.to_h,
             'filter' => @filter.to_h,
+            'changePassword' => {
+              'supported' => change_password_supported,
+            }
           }
         end
 

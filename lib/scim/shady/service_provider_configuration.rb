@@ -33,6 +33,10 @@ module Scim
         to_h['filter']['maxResults']
       end
 
+      def change_password_supported
+        to_h['changePassword']['supported']
+      end
+
       def to_h
         @hash ||= JSON.parse(to_json)
       end
