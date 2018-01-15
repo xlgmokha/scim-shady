@@ -5,6 +5,12 @@ module Scim
         attr_accessor :documentation_uri
         attr_accessor :patch
         attr_accessor :change_password_supported
+        attr_accessor :sort_supported
+        attr_accessor :etag_supported
+
+        def initialize
+          @authentication_schemes = []
+        end
 
         def bulk
           @bulk = Bulk.new
@@ -14,6 +20,26 @@ module Scim
         def filter
           @filter = Filter.new
           yield @filter
+        end
+
+        def add_authentication_scheme(type)
+          if :oauth_bearer_token == type
+            @authentication_schemes.push({
+              "name" => "OAuth Bearer Token",
+              "description" => "Authentication scheme using the OAuth Bearer Token Standard",
+              "specUri" => "http://www.rfc-editor.org/info/rfc6750",
+              "documentationUri" => "http://example.com/help/oauth.html",
+              "type" => "oauthbearertoken",
+            })
+          elsif :http_basic == type
+            @authentication_schemes.push({
+              "name" => "HTTP Basic",
+              "description" => "Authentication scheme using the HTTP Basic Standard",
+              "specUri" => "http://www.rfc-editor.org/info/rfc2617",
+              "documentationUri" => "http://example.com/help/httpBasic.html",
+              "type" => "httpbasic",
+            })
+          end
         end
 
         def build
@@ -33,7 +59,17 @@ module Scim
             'filter' => @filter.to_h,
             'changePassword' => {
               'supported' => change_password_supported,
-            }
+            },
+            'sort' => {
+              'supported' => sort_supported,
+            },
+            'etag' => {
+              'supported' => etag_supported,
+            },
+            'authenticationSchemes' => @authentication_schemes.each_with_index.map do |scheme, index|
+              scheme['primary'] = true if index.zero?
+              scheme
+            end
           }
         end
 

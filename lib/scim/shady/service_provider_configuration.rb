@@ -37,6 +37,18 @@ module Scim
         to_h['changePassword']['supported']
       end
 
+      def sort_supported
+        to_h['sort']['supported']
+      end
+
+      def etag_supported
+        to_h['etag']['supported']
+      end
+
+      def authentication_schemes
+        to_h['authenticationSchemes']
+      end
+
       def to_h
         @hash ||= JSON.parse(to_json)
       end

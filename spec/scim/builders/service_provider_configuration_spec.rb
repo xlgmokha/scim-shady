@@ -45,5 +45,39 @@ RSpec.describe Scim::Shady::Builders::ServiceProviderConfiguration do
       result = subject.build
       expect(result.change_password_supported).to be(true)
     end
+
+    it 'can configure sort support' do
+      subject.sort_supported = true
+      expect(subject.build.sort_supported).to be(true)
+    end
+
+    it 'can configure etag support' do
+      subject.etag_supported = true
+      expect(subject.build.etag_supported).to be(true)
+    end
+
+    it 'can add authentication schemes' do
+      subject.add_authentication_scheme(:oauth_bearer_token)
+      subject.add_authentication_scheme(:http_basic)
+
+      result = subject.build
+      expect(result.authentication_schemes).to match_array([
+        {
+          "name" => "OAuth Bearer Token",
+          "description" => "Authentication scheme using the OAuth Bearer Token Standard",
+          "specUri" => "http://www.rfc-editor.org/info/rfc6750",
+          "documentationUri" => "http://example.com/help/oauth.html",
+          "type" => "oauthbearertoken",
+          "primary" => true,
+        },
+        {
+          "name" => "HTTP Basic",
+          "description" => "Authentication scheme using the HTTP Basic Standard",
+          "specUri" => "http://www.rfc-editor.org/info/rfc2617",
+          "documentationUri" => "http://example.com/help/httpBasic.html",
+          "type" => "httpbasic",
+        }
+      ])
+    end
   end
 end
