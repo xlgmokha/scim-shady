@@ -9,7 +9,7 @@ RSpec.describe Scim::Shady::Builders::ServiceProviderConfiguration do
       expect(subject.build.documentation_uri).to eql(documentation_uri)
     end
 
-    it 'can specitify patch support' do
+    it 'can specify patch support' do
       subject.patch = false
       expect(subject.build.patch).to be(false)
 
