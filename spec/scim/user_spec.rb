@@ -73,10 +73,10 @@ RSpec.describe Scim::Shady::User do
 
       expect(subject.id).to eql(id)
       expect(subject.username).to eql(username)
-      expect(subject.created.iso8601).to eql(created_at.iso8601)
-      expect(subject.last_modified.iso8601).to eql(updated_at.iso8601)
-      expect(subject.version).to eql(user_version)
-      expect(subject.location).to eql(user_url)
+      expect(subject.meta.created.iso8601).to eql(created_at.iso8601)
+      expect(subject.meta.last_modified.iso8601).to eql(updated_at.iso8601)
+      expect(subject.meta.version).to eql(user_version)
+      expect(subject.meta.location).to eql(user_url)
     end
   end
 end

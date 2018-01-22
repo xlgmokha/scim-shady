@@ -1,10 +1,12 @@
 module Scim
   module Shady
     class ServiceProviderConfiguration
-      include Metadata
-
       def initialize(json)
         @json = json
+      end
+
+      def meta
+        Metadata.new(to_h)
       end
 
       def documentation_uri

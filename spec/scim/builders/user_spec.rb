@@ -23,10 +23,10 @@ RSpec.describe Scim::Shady::Builders::User do
 
       expect(result.id).to eql(id)
       expect(result.username).to eql(username)
-      expect(result.created).to eql(DateTime.parse(created_at.utc.iso8601))
-      expect(result.last_modified).to eql(DateTime.parse(updated_at.utc.iso8601))
-      expect(result.version).to eql(user_version)
-      expect(result.location).to eql(user_url)
+      expect(result.meta.created).to eql(DateTime.parse(created_at.utc.iso8601))
+      expect(result.meta.last_modified).to eql(DateTime.parse(updated_at.utc.iso8601))
+      expect(result.meta.version).to eql(user_version)
+      expect(result.meta.location).to eql(user_url)
     end
 
     it 'builds a full representation' do
@@ -95,7 +95,7 @@ RSpec.describe Scim::Shady::Builders::User do
       subject.meta do |x|
         x.created_at = created_at
         x.updated_at = updated_at
-        x.version = "a330bc54f0671c9"
+        x.version = "W\/\"a330bc54f0671c9\""
         x.location = "https://example.com/v2/Users/2819c223-7f76-453a-919d-413861904646"
       end
       result = subject.build

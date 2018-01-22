@@ -214,8 +214,6 @@ module Scim
         to_h['x509Certificates'].map { |x| X509Certificate.new(x) }
       end
 
-      def meta
-      end
 
       class << self
         def build
