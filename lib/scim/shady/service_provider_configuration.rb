@@ -1,6 +1,8 @@
 module Scim
   module Shady
     class ServiceProviderConfiguration
+      include Buildable
+
       def initialize(json)
         @json = json
       end
@@ -59,6 +61,10 @@ module Scim
 
       def to_json
         @json
+      end
+
+      def self.builder_class
+        Scim::Shady::Builders::ServiceProviderConfiguration
       end
     end
   end
