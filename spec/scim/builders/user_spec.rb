@@ -109,7 +109,7 @@ RSpec.describe Scim::Shady::Builders::User do
       expect(result.phone_numbers.first).to be_work
       expect(result.phone_numbers.last.value).to eql("555-555-4444")
       expect(result.phone_numbers.last).to be_mobile
-      expect(result.instant_messengers.first.value).to eql("someimhandle")
+      expect(result.instant_messengers.first.value).to eql("someaimhandle")
       expect(result.instant_messengers.first.type).to eql("aim")
       expect(result.photos.first.value).to eql("https://photos.example.com/profilephoto/72930000000Ccne/F")
       expect(result.photos.first).to be_photo
@@ -130,7 +130,7 @@ RSpec.describe Scim::Shady::Builders::User do
       expect(result.groups[2].value).to eql("71ddacd2-a8e7-49b8-a5db-ae50d0a5bfd7")
       expect(result.groups[2].reference).to eql("https://example.com/v2/Groups/71ddacd2-a8e7-49b8-a5db-ae50d0a5bfd7")
       expect(result.groups[2].display).to eql("US Employees")
-      expect(result.x509_certificates.first).to eql(x509_certificate.to_pem.gsub(/-----BEGIN CERTIFICATE-----/, '').gsub(/-----END CERTIFICATE-----/, ''))
+      expect(result.x509_certificates.first.value).to eql(x509_certificate.to_pem.gsub(/-----BEGIN CERTIFICATE-----/, '').gsub(/-----END CERTIFICATE-----/, ''))
       expect(result.meta).to be_user
       expect(result.meta.created_at).to eql(DateTime.parse(created_at.utc.iso8601))
       expect(result.meta.updated_at).to eql(DateTime.parse(updated_at.utc.iso8601))

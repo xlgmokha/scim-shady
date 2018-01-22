@@ -1,5 +1,106 @@
 module Scim
   module Shady
+    class X509Certificate
+      def initialize(hash)
+        @hash = hash
+      end
+
+      def value
+        to_h['value']
+      end
+
+      def to_h
+        @hash
+      end
+    end
+    class Group
+      def initialize(hash)
+        @hash = hash
+      end
+
+      def value
+        to_h['value']
+      end
+
+      def reference
+        to_h['$ref']
+      end
+
+      def display
+        to_h['display']
+      end
+
+      def to_h
+        @hash
+      end
+    end
+    class Photo
+      def initialize(hash)
+        @hash = hash
+      end
+
+      def value
+        to_h['value']
+      end
+
+      def type
+        to_h['type']
+      end
+
+      def photo?
+        type == 'photo'
+      end
+
+      def thumbnail?
+        type == 'thumbnail'
+      end
+
+      def to_h
+        @hash
+      end
+    end
+    class InstantMessenger
+      def initialize(hash)
+        @hash = hash
+      end
+
+      def value
+        to_h['value']
+      end
+
+      def type
+        to_h['type']
+      end
+
+      def to_h
+        @hash
+      end
+    end
+    class PhoneNumber
+      def initialize(hash)
+        @hash = hash
+      end
+
+      def value
+        to_h['value']
+      end
+
+      def type
+        to_h['type']
+      end
+
+      def work?
+        type == 'work'
+      end
+
+      def mobile?
+        type == 'mobile'
+      end
+
+      def to_h
+        @hash
+      end
+    end
     class Name
       def initialize(hash)
         @hash = hash
@@ -67,6 +168,53 @@ module Scim
 
       def addresses
         to_h['addresses'].map { |x| Address.new(x) }
+      end
+
+      def phone_numbers
+        to_h['phoneNumbers'].map { |x| PhoneNumber.new(x) }
+      end
+
+      def instant_messengers
+        to_h['ims'].map { |x| InstantMessenger.new(x) }
+      end
+
+      def photos
+        to_h['photos'].map { |x| Photo.new(x) }
+      end
+
+      def user_type
+        to_h['userType']
+      end
+
+      def title
+        to_h['title']
+      end
+
+      def preferred_language
+        to_h['preferredLanguage']
+      end
+
+      def locale
+        to_h['locale']
+      end
+
+      def timezone
+        to_h['timezone']
+      end
+
+      def active?
+        to_h['active']
+      end
+
+      def groups
+        to_h['groups'].map { |x| Group.new(x) }
+      end
+
+      def x509_certificates
+        to_h['x509Certificates'].map { |x| X509Certificate.new(x) }
+      end
+
+      def meta
       end
 
       class << self
