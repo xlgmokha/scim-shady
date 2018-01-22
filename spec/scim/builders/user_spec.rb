@@ -34,6 +34,7 @@ RSpec.describe Scim::Shady::Builders::User do
       subject.external_id = "701984"
       subject.username = "bjensen@example.com"
       subject.name do |x|
+        x.formatted = "Ms. Barbara J Jensen, III"
         x.family_name = "Jensen"
         x.given_name = "Barbara"
         x.middle_name = "Jane"

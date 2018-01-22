@@ -2,6 +2,9 @@ module Scim
   module Shady
     module Builders
       class ServiceProviderConfiguration
+        extend Forwardable
+        def_delegators :@meta, :created_at=, :updated_at=, :location=, :version=
+        def_delegators :@meta, :created_at, :updated_at, :location, :version
         attr_accessor :documentation_uri
         attr_accessor :patch
         attr_accessor :change_password_supported
@@ -11,7 +14,7 @@ module Scim
         def initialize
           @authentication_schemes = []
           @created_at = @updated_at = Time.now
-          @meta = Metadata.new
+          @meta = Metadata.new(self)
         end
 
         def bulk
@@ -53,7 +56,7 @@ module Scim
         end
 
         def to_h
-          super.merge({
+          {
             'schemas' => [Schemas::SERVICE_PROVIDER_CONFIG],
             'documentationUri' => documentation_uri,
             'patch' => { "supported" => patch },
@@ -72,7 +75,7 @@ module Scim
               scheme['primary'] = true if index.zero?
               scheme
             end
-          })
+          }.merge(@meta.to_h)
         end
 
         class Bulk

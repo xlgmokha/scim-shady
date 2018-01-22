@@ -98,9 +98,7 @@ module Scim
         attr_accessor :middle_name
         attr_accessor :honorific_prefix
         attr_accessor :honorific_suffix
-
-        def formatted
-        end
+        attr_accessor :formatted
 
         def to_h
           {
@@ -132,10 +130,10 @@ module Scim
           @items ||= []
           @items.push(
             type: type,
-            street_address: street_address,
+            streetAddress: street_address,
             locality: locality,
             region: region,
-            postal_code: postal_code,
+            postalCode: postal_code,
             country: country,
             primary: primary,
           )
