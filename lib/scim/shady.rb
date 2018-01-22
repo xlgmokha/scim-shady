@@ -1,8 +1,10 @@
 require "forwardable"
 require "json"
 require "time"
+require "active_support/concern"
 
 require "scim/shady/address"
+require "scim/shady/buildable"
 require "scim/shady/builders"
 require "scim/shady/group"
 require "scim/shady/instant_messenger"
