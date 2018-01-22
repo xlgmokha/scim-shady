@@ -1,5 +1,7 @@
 require "scim/shady/builders/addresses"
+require "scim/shady/builders/bulk"
 require "scim/shady/builders/emails"
+require "scim/shady/builders/filter"
 require "scim/shady/builders/groups"
 require "scim/shady/builders/instant_messengers"
 require "scim/shady/builders/metadata"
