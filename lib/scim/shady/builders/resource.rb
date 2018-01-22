@@ -1,5 +1,3 @@
-require 'forwardable'
-
 module Scim
   module Shady
     module Builders
