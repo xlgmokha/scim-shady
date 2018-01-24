@@ -2,7 +2,7 @@ module Scim
   module Shady
     module Builders
       class Emails
-        def add(email, type:, primary: false)
+        def add(email, type: :work, primary: false)
           @items ||= []
           @items.push(value: email, type: type, primary: primary)
         end
