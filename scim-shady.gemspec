@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "scim-shady"
   spec.version       = Scim::Shady::VERSION
   spec.authors       = ["mo"]
-  spec.email         = ["mo.khan@gmail.com"]
+  spec.email         = ["mo@mokhan.ca"]
 
-  spec.summary       = %q{Write a short summary, because RubyGems requires one.}
-  spec.description   = %q{Write a longer description or delete this line.}
+  spec.summary       = %q{A simple toolkit for implementing SCIM schema. https://tools.ietf.org/html/rfc7643}
+  spec.description   = %q{A simple toolkit for implementing SCIM schema. https://tools.ietf.org/html/rfc7643}
   spec.homepage      = "http://www.mokhan.ca/"
   spec.license       = "MIT"
 
