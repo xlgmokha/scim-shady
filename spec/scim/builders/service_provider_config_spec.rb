@@ -92,6 +92,7 @@ RSpec.describe Scim::Shady::Builders::ServiceProviderConfig do
       expect(result.meta.created).to eql(DateTime.parse(subject.created_at.iso8601))
       expect(result.meta.last_modified).to eql(DateTime.parse(subject.updated_at.iso8601))
       expect(result.meta.version).to eql(subject.version)
+      expect(result.meta.resource_type).to eql("ServiceProviderConfig")
     end
   end
 end

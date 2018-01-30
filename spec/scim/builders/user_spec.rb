@@ -27,6 +27,7 @@ RSpec.describe Scim::Shady::Builders::User do
       expect(result.meta.last_modified).to eql(DateTime.parse(updated_at.utc.iso8601))
       expect(result.meta.version).to eql(user_version)
       expect(result.meta.location).to eql(user_url)
+      expect(result.meta.resource_type).to eql("User")
     end
 
     it 'builds a full representation' do
