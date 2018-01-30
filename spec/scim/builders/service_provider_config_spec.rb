@@ -1,4 +1,4 @@
-RSpec.describe Scim::Shady::Builders::ServiceProviderConfiguration do
+RSpec.describe Scim::Shady::Builders::ServiceProviderConfig do
   subject { described_class.new }
 
   describe ".build" do

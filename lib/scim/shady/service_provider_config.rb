@@ -1,6 +1,6 @@
 module Scim
   module Shady
-    class ServiceProviderConfiguration
+    class ServiceProviderConfig
       include Buildable
 
       def initialize(json)
@@ -64,7 +64,7 @@ module Scim
       end
 
       def self.builder_class
-        Scim::Shady::Builders::ServiceProviderConfiguration
+        Scim::Shady::Builders::ServiceProviderConfig
       end
     end
   end

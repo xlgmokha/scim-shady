@@ -1,7 +1,7 @@
 module Scim
   module Shady
     module Builders
-      class ServiceProviderConfiguration
+      class ServiceProviderConfig
         extend Forwardable
         def_delegators :@meta, :created_at=, :updated_at=, :location=, :version=
         def_delegators :@meta, :created_at, :updated_at, :location, :version
@@ -17,7 +17,7 @@ module Scim
           @meta = Metadata.new(self)
         end
 
-        def mata
+        def meta
           yield @meta
         end
 
@@ -52,7 +52,7 @@ module Scim
         end
 
         def build
-          Scim::Shady::ServiceProviderConfiguration.new(to_json)
+          Scim::Shady::ServiceProviderConfig.new(to_json)
         end
 
         def to_json
