@@ -17,6 +17,10 @@ module Scim
           @meta = Metadata.new(self)
         end
 
+        def mata
+          yield @meta
+        end
+
         def bulk
           @bulk = Bulk.new
           yield @bulk
