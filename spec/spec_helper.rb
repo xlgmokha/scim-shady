@@ -2,6 +2,7 @@ require "bundler/setup"
 require "scim/shady"
 require "securerandom"
 require "ffaker"
+require "openssl"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
