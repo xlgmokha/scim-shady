@@ -20,6 +20,7 @@ RSpec.describe Scim::Shady::User do
     subject.phone_numbers << { value: '1-555-5555', display: '1-555-5555', type: 'work', primary: true }
     subject.ims << { value: 'bjensen', display: 'bjensen', type: 'xmpp', primary: true }
     subject.photos << { value: 'https://gph.is/Zeq0fl', display: 'on the beach', type: 'photo', primary: true }
+    subject.addresses << { formatted: '123 street NE, Seattle, WA', street_address: '123 street NE', locality: 'Seattle', region: 'WA', postal_code: '12345', country: 'USA', type: 'work' }
   end
 
   specify { expect(subject.to_h[:userName]).to eql('bjensen') }

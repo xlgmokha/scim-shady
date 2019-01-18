@@ -6,7 +6,7 @@ module Scim
   module Shady
     class User < ::Scim::Kit::V2::Resource
       def initialize
-        schema = ::Scim::Kit::V2::Schema.new(id: ::Scim::Kit::V2::Schemas::USER, name: 'User', location: "/scim/v2/Schemas/#{::Scim::Kit::V2::Schemas::USER}")
+        schema = ::Scim::Kit::V2::Schema.new(id: ::Scim::Kit::V2::Schemas::USER, name: 'User', location: "/v2/Schemas/#{::Scim::Kit::V2::Schemas::USER}")
         schema.add_attribute(name: :user_name) do |x|
           x.multi_valued = false
           x.description = "Unique identifier for the User, typically used by the user to directly authenticate to the service provider.  Each User MUST include a non-empty userName value.  This identifier MUST be unique across the service provider's entire set of Users.  REQUIRED."
@@ -308,6 +308,78 @@ module Scim
             y.required = false
             y.mutability = :read_write
             y.returned = :default
+          end
+        end
+        schema.add_attribute(name: :addresses, type: :complex) do |x|
+          x.multi_valued = true
+          x.description = "A physical mailing address for this User.  Canonical type values of 'work', 'home', and 'other'.  This attribute is a complex type with the following sub-attributes."
+          x.required = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.uniqueness = :none
+          x.add_attribute(name: :formatted, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The full mailing address, formatted for display or use with a mailing label.  This attribute MAY contain newlines."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :street_address, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The full street address component, which may include house number, street name, P.O. box, and multi-line extended street address information.  This attribute MAY contain newlines."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :locality, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The city or locality component."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :region, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The state or region component."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :postal_code, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The zip code or postal code component."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :country, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The country name component."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :type, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A label indicating the attribute's function, e.g., 'work' or 'home'."
+            y.required = false
+            y.case_exact = false
+            y.canonical_values = ['work', 'home', 'other']
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
           end
         end
         super(schemas: [schema])
