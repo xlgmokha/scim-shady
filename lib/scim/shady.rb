@@ -78,6 +78,15 @@ module Scim
             y.uniqueness = :none
           end
         end
+        schema.add_attribute(name: :display_name, type: :string) do |x|
+          x.multi_valued = false
+          x.description = "The name of the User, suitable for display to end-users.  The name SHOULD be the full name of the User being described, if known."
+          x.required = false
+          x.case_exact = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.uniqueness = :none
+        end
         super(schemas: [schema])
       end
 
