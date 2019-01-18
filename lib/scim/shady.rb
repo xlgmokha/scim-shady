@@ -225,6 +225,48 @@ module Scim
             y.returned = :default
           end
         end
+        schema.add_attribute(name: :ims, type: :complex) do |x|
+          x.multi_valued = true
+          x.description = "Instant messaging addresses for the User."
+          x.required = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.add_attribute(name: :value, type: :string) do |y|
+            y.multi_valued = true
+            y.description = "Instant messaging address for the User."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :display, type: :string) do |y|
+            y.multi_valued = true
+            y.description = "A human-readable name, primarily used for display purposes.  READ-ONLY."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :type, type: :string) do |y|
+            y.multi_valued = true
+            y.description = "A label indicating the attribute's function, e.g., 'aim', 'gtalk', 'xmpp'."
+            y.required = false
+            y.case_exact = false
+            y.canonical_values = ['aim', 'gtalk', 'icq', 'xmpp', 'msn', 'skype', 'qq', 'yahoo']
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :primary, type: :boolean) do |y|
+            y.multi_valued = true
+            y.description = "A Boolean value indicating the 'primary' or preferred attribute value for this attribute, e.g., the preferred messenger or primary messenger.  The primary attribute value 'true' MUST appear no more than once."
+            y.required = false
+            y.mutability = :read_write
+            y.returned = :default
+          end
+        end
         super(schemas: [schema])
       end
 
