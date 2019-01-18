@@ -183,6 +183,48 @@ module Scim
             y.returned = :default
           end
         end
+        schema.add_attribute(name: :phone_numbers, type: :complex) do |x|
+          x.multi_valued = true
+          x.description = "Phone numbers for the User.  The value SHOULD be canonicalized by the service provider according to the format specified in RFC 3966, e.g., 'tel:+1-201-555-0123'.  Canonical type values of 'work', 'home', 'mobile', 'fax', 'pager', and 'other'."
+          x.required = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.add_attribute(name: :value, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "Phone number of the User."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :display, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A human-readable name, primarily used for display purposes.  READ-ONLY."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :type, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A label indicating the attribute's function, e.g., 'work', 'home', 'mobile'."
+            y.required = false
+            y.case_exact = false
+            y.canonical_values = ['work', 'home', 'mobile', 'fax', 'pager', 'other']
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :primary, type: :boolean) do |y|
+            y.multi_valued = false
+            y.description = "A Boolean value indicating the 'primary' or preferred attribute value for this attribute, e.g., the preferred phone number or primary phone number.  The primary attribute value 'true' MUST appear no more than once."
+            y.required = false
+            y.mutability = :read_write
+            y.returned = :default
+          end
+        end
         super(schemas: [schema])
       end
 

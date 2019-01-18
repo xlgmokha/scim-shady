@@ -17,6 +17,7 @@ RSpec.describe Scim::Shady::User do
     subject.active = true
     subject.password = "password"
     subject.emails << { value: 'bjensen@example.com', display: 'bjensen@example.com', type: 'work', primary: true }
+    subject.phone_numbers << { value: '1-555-5555', display: '1-555-5555', type: 'work', primary: true }
   end
 
   specify { expect(subject.to_h[:userName]).to eql('bjensen') }
