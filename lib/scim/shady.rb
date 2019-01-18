@@ -267,6 +267,49 @@ module Scim
             y.returned = :default
           end
         end
+        schema.add_attribute(name: :photos, type: :complex) do |x|
+          x.multi_valued = true
+          x.description = "URLs of photos of the User."
+          x.required = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.add_attribute(name: :value, type: :reference) do |y|
+            y.reference_types = ['external']
+            y.multi_valued = false
+            y.description = "URL of a photo of the User."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :display, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A human-readable name, primarily used for display purposes.  READ-ONLY."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :type, type: :string) do |y|
+            y.multi_valued = true
+            y.description = "A label indicating the attribute's function, i.e., 'photo' or 'thumbnail'."
+            y.required = false
+            y.case_exact = false
+            y.canonical_values = ['photo', 'thumbnail']
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :primary, type: :boolean) do |y|
+            y.multi_valued = true
+            y.description = "A Boolean value indicating the 'primary' or preferred attribute value for this attribute, e.g., the preferred photo or thumbnail.  The primary attribute value 'true' MUST appear no more than once."
+            y.required = false
+            y.mutability = :read_write
+            y.returned = :default
+          end
+        end
         super(schemas: [schema])
       end
 

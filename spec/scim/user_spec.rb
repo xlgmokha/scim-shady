@@ -19,6 +19,7 @@ RSpec.describe Scim::Shady::User do
     subject.emails << { value: 'bjensen@example.com', display: 'bjensen@example.com', type: 'work', primary: true }
     subject.phone_numbers << { value: '1-555-5555', display: '1-555-5555', type: 'work', primary: true }
     subject.ims << { value: 'bjensen', display: 'bjensen', type: 'xmpp', primary: true }
+    subject.photos << { value: 'https://gph.is/Zeq0fl', display: 'on the beach', type: 'photo', primary: true }
   end
 
   specify { expect(subject.to_h[:userName]).to eql('bjensen') }
