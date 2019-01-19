@@ -475,6 +475,91 @@ module Scim
             y.returned = :default
           end
         end
+        schema.add_attribute(name: :roles, type: :complex) do |x|
+          x.multi_valued = true
+          x.description = "A list of roles for the User that collectively represent who the User is, e.g., 'Student', 'Faculty'."
+          x.required = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.add_attribute(name: :value, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The value of a role."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :display, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A human-readable name, primarily used for display purposes.  READ-ONLY."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :type, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A label indicating the attribute's function."
+            y.required = false
+            y.case_exact = false
+            y.canonical_values = []
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :primary, type: :boolean) do |y|
+            y.multi_valued = false
+            y.description = "A Boolean value indicating the 'primary' or preferred attribute value for this attribute.  The primary attribute value 'true' MUST appear no more than once."
+            y.required = false
+            y.mutability = :read_write
+            y.returned = :default
+          end
+        end
+        schema.add_attribute(name: :x509_certificates, type: :complex) do |x|
+          x.multi_valued = true
+          x.description = "A list of certificates issued to the User."
+          x.required = false
+          x.case_exact = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.add_attribute(name: :value, type: :binary) do |y|
+            y.multi_valued = false
+            y.description = "The value of an X.509 certificate."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :display, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A human-readable name, primarily used for display purposes.  READ-ONLY."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :type, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A label indicating the attribute's function."
+            y.required = false
+            y.case_exact = false
+            y.canonical_values = []
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :primary, type: :boolean) do |y|
+            y.multi_valued = false
+            y.description = "A Boolean value indicating the 'primary' or preferred attribute value for this attribute.  The primary attribute value 'true' MUST appear no more than once."
+            y.required = false
+            y.mutability = :read_write
+            y.returned = :default
+          end
+        end
         schema
       end
     end

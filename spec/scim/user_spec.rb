@@ -23,6 +23,7 @@ RSpec.describe Scim::Shady::User do
     subject.addresses << { formatted: '123 street NE, Seattle, WA', street_address: '123 street NE', locality: 'Seattle', region: 'WA', postal_code: '12345', country: 'USA', type: 'work' }
     subject.groups << { value: SecureRandom.uuid, '$ref' => FFaker::Internet.uri('https'), display: '', type: 'direct' }
     subject.entitlements << { value: SecureRandom.uuid, display: 'thing', type: 'thing', primary: true }
+    subject.x509_certificates << { value: '', display: '', type: '', primary: true }
   end
 
   specify { expect(subject.to_h[:userName]).to eql('bjensen') }
