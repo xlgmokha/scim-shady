@@ -2,6 +2,7 @@ require 'json'
 require 'scim-kit'
 
 require 'scim/shady/user'
+require 'scim/shady/group'
 require 'scim/shady/version'
 
 module Scim
