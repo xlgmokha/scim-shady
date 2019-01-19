@@ -7,7 +7,7 @@ before_script:
   - export LC_ALL=en_US.UTF-8
   - ruby -v
   - which ruby
-  - gem install bundler --no-ri --no-rdoc
+  - gem install bundler
   - bundle install --jobs $(nproc) "${FLAGS[@]}"
 
 rspec:
