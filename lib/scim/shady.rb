@@ -5,8 +5,8 @@ require 'scim-kit'
 module Scim
   module Shady
     class User < ::Scim::Kit::V2::Resource
-      def initialize
-        super(schemas: [self.class.schema])
+      def initialize(attributes = {})
+        super(schemas: [self.class.schema], attributes: attributes)
       end
 
       def template_name
