@@ -6,7 +6,15 @@ module Scim
   module Shady
     class User < ::Scim::Kit::V2::Resource
       def initialize
-        schema = ::Scim::Kit::V2::Schema.new(id: ::Scim::Kit::V2::Schemas::USER, name: 'User', location: "/v2/Schemas/#{::Scim::Kit::V2::Schemas::USER}")
+        super(schemas: [self.class.schema])
+      end
+
+      def template_name
+        'resource.json.jbuilder'
+      end
+
+      def self.schema(location: "/v2/Schemas/#{::Scim::Kit::V2::Schemas::USER}")
+        schema = ::Scim::Kit::V2::Schema.new(id: ::Scim::Kit::V2::Schemas::USER, name: 'User', location: location)
         schema.add_attribute(name: :user_name) do |x|
           x.multi_valued = false
           x.description = "Unique identifier for the User, typically used by the user to directly authenticate to the service provider.  Each User MUST include a non-empty userName value.  This identifier MUST be unique across the service provider's entire set of Users.  REQUIRED."
@@ -382,11 +390,7 @@ module Scim
             y.uniqueness = :none
           end
         end
-        super(schemas: [schema])
-      end
-
-      def template_name
-        'resource.json.jbuilder'
+        schema
       end
     end
   end
