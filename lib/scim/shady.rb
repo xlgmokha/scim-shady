@@ -390,6 +390,91 @@ module Scim
             y.uniqueness = :none
           end
         end
+        schema.add_attribute(name: :groups, type: :complex) do |x|
+          x.multi_valued = true
+          x.description = "A list of groups to which the user belongs, either through direct membership, through nested groups, or dynamically calculated."
+          x.required = false
+          x.mutability = :read_only
+          x.returned = :default
+          x.add_attribute(name: :value, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The identifier of the User's group."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_only
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: '$ref', type: :reference) do |y|
+            y.multi_valued = false
+            y.description = "The URI of the corresponding 'Group' resource to which the user belongs."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_only
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :display, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A human-readable name, primarily used for display purposes.  READ-ONLY."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_only
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :type, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A label indicating the attribute's function, e.g., 'direct' or 'indirect'."
+            y.required = false
+            y.case_exact = false
+            y.canonical_values = ['direct', 'indirect']
+            y.mutability = :read_only
+            y.returned = :default
+            y.uniqueness = :none
+          end
+        end
+        schema.add_attribute(name: :entitlements, type: :complex) do |x|
+          x.multi_valued = true
+          x.description = "A list of entitlements for the User that represent a thing the User has."
+          x.required = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.add_attribute(name: :value, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "The value of an entitlement."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :display, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A human-readable name, primarily used for display purposes.  READ-ONLY."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :type, type: :string) do |y|
+            y.multi_valued = false
+            y.description = "A label indicating the attribute's function."
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :primary, type: :boolean) do |y|
+            y.multi_valued = false
+            y.description = "A Boolean value indicating the 'primary' or preferred attribute value for this attribute.  The primary attribute value 'true' MUST appear no more than once."
+            y.required = false
+            y.mutability = :read_write
+            y.returned = :default
+          end
+        end
         schema
       end
     end
