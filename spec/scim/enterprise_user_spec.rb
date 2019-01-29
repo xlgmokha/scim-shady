@@ -9,6 +9,7 @@ RSpec.describe Scim::Shady::EnterpriseUser do
     subject.name.middle_name = "Jane"
     subject.name.honorific_prefix = "Ms."
     subject.name.honorific_suffix = "III"
+    subject.password = SecureRandom.uuid
     subject.display_name = "Barbara Jensen"
     subject.nick_name = "Barb"
     subject.preferred_language = "en_US"
@@ -18,7 +19,11 @@ RSpec.describe Scim::Shady::EnterpriseUser do
     subject.employee_number = '1'
     subject.cost_center = SecureRandom.uuid
     subject.organization = SecureRandom.uuid
+    subject.division = SecureRandom.uuid
     subject.department = SecureRandom.uuid
+    subject.manager.value = SecureRandom.uuid
+    subject.manager.write_attribute('$ref', SecureRandom.uuid)
+    subject.manager.display_name = SecureRandom.uuid
   end
 
   specify { expect(subject).to be_valid }

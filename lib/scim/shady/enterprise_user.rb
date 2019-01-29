@@ -56,6 +56,40 @@ module Scim
           x.returned = :default
           x.uniqueness = :none
         end
+        schema.add_attribute(name: :manager, type: :complex) do |x|
+          x.multi_valued = false
+          x.description = ""
+          x.required = false
+          x.mutability = :read_write
+          x.returned = :default
+          x.add_attribute(name: :value, type: :string) do |y|
+            y.multi_valued = false
+            y.description = ""
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: '$ref', type: :reference) do |y|
+            y.multi_valued = false
+            y.description = ""
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_write
+            y.returned = :default
+            y.uniqueness = :none
+          end
+          x.add_attribute(name: :display_name, type: :string) do |y|
+            y.multi_valued = false
+            y.description = ""
+            y.required = false
+            y.case_exact = false
+            y.mutability = :read_only
+            y.returned = :default
+            y.uniqueness = :none
+          end
+        end
         schema
       end
     end
