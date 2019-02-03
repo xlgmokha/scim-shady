@@ -5,10 +5,6 @@ module Scim
         super(schemas: [self.class.schema], attributes: attributes)
       end
 
-      def template_name
-        'resource.json.jbuilder'
-      end
-
       def self.schema(location: "/v2/Schemas/#{::Scim::Kit::V2::Schemas::GROUP}")
         schema = ::Scim::Kit::V2::Schema.new(id: ::Scim::Kit::V2::Schemas::GROUP, name: 'Group', location: location)
         schema.add_attribute(name: :display_name, type: :string) do |x|

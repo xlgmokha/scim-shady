@@ -1,8 +1,6 @@
 # Scim::Shady
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/scim/shady`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+This gem provides the default SCIM schemas described in [RFC-7643](https://tools.ietf.org/html/rfc7643).
 
 ## Installation
 
@@ -22,7 +20,10 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+See `spec/scim/*_spec.rb` for example usage.
+
+For more advanced scenarios, considering using
+[scim-kit](https://github.com/mokhan/scim-kit).
 
 ## Development
 
@@ -32,7 +33,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/scim-shady.
+Bug reports and pull requests are welcome on GitHub at https://github.com/mokhan/scim-shady.
 
 ## License
 
