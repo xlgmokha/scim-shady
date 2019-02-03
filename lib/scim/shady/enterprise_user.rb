@@ -5,10 +5,6 @@ module Scim
         super(schemas: [User.schema, self.class.schema], attributes: attributes)
       end
 
-      def template_name
-        'resource.json.jbuilder'
-      end
-
       def self.schema(location: "/v2/Schemas/urn:ietf:params:scim:schemas:extension:enterprise:2.0:User")
         schema = ::Scim::Kit::V2::Schema.new(id: "urn:ietf:params:scim:schemas:extension:enterprise:2.0:User", name: 'EnterpriseUser', location: location)
         schema.add_attribute(name: :employee_number, type: :string) do |x|
