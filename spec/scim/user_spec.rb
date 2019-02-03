@@ -27,6 +27,5 @@ RSpec.describe Scim::Shady::User do
   end
 
   specify { expect(subject.to_h[:userName]).to eql('bjensen') }
-  xspecify { expect(subject).to be_valid }
-  specify { subject.valid?; puts subject.errors.full_messages.inspect }
+  specify { expect(subject).to be_valid }
 end

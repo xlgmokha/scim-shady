@@ -22,7 +22,7 @@ RSpec.describe Scim::Shady::EnterpriseUser do
     subject.division = SecureRandom.uuid
     subject.department = SecureRandom.uuid
     subject.manager.value = SecureRandom.uuid
-    subject.manager.write_attribute('$ref', SecureRandom.uuid)
+    subject.manager.write_attribute('$ref', FFaker::Internet.uri('https'))
     subject.manager.display_name = SecureRandom.uuid
   end
 

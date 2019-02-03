@@ -236,7 +236,7 @@ module Scim
           x.mutability = :read_write
           x.returned = :default
           x.add_attribute(name: :value, type: :string) do |y|
-            y.multi_valued = true
+            y.multi_valued = false
             y.description = "Instant messaging address for the User."
             y.required = false
             y.case_exact = false
@@ -245,7 +245,7 @@ module Scim
             y.uniqueness = :none
           end
           x.add_attribute(name: :display, type: :string) do |y|
-            y.multi_valued = true
+            y.multi_valued = false
             y.description = "A human-readable name, primarily used for display purposes.  READ-ONLY."
             y.required = false
             y.case_exact = false
@@ -254,7 +254,7 @@ module Scim
             y.uniqueness = :none
           end
           x.add_attribute(name: :type, type: :string) do |y|
-            y.multi_valued = true
+            y.multi_valued = false
             y.description = "A label indicating the attribute's function, e.g., 'aim', 'gtalk', 'xmpp'."
             y.required = false
             y.case_exact = false
@@ -264,7 +264,7 @@ module Scim
             y.uniqueness = :none
           end
           x.add_attribute(name: :primary, type: :boolean) do |y|
-            y.multi_valued = true
+            y.multi_valued = false
             y.description = "A Boolean value indicating the 'primary' or preferred attribute value for this attribute, e.g., the preferred messenger or primary messenger.  The primary attribute value 'true' MUST appear no more than once."
             y.required = false
             y.mutability = :read_write
@@ -297,7 +297,7 @@ module Scim
             y.uniqueness = :none
           end
           x.add_attribute(name: :type, type: :string) do |y|
-            y.multi_valued = true
+            y.multi_valued = false
             y.description = "A label indicating the attribute's function, i.e., 'photo' or 'thumbnail'."
             y.required = false
             y.case_exact = false
@@ -307,7 +307,7 @@ module Scim
             y.uniqueness = :none
           end
           x.add_attribute(name: :primary, type: :boolean) do |y|
-            y.multi_valued = true
+            y.multi_valued = false
             y.description = "A Boolean value indicating the 'primary' or preferred attribute value for this attribute, e.g., the preferred photo or thumbnail.  The primary attribute value 'true' MUST appear no more than once."
             y.required = false
             y.mutability = :read_write
@@ -543,7 +543,6 @@ module Scim
             y.description = "A label indicating the attribute's function."
             y.required = false
             y.case_exact = false
-            y.canonical_values = []
             y.mutability = :read_write
             y.returned = :default
             y.uniqueness = :none
